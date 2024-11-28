@@ -42,6 +42,10 @@ public class AdminUserPage {
 
 	@FindBy(xpath = "//select[@id='ut']//option[text()='Staff']")
 	WebElement searchUserType;
+	
+	@FindBy(xpath="//button[@name='Search']")
+	WebElement searchUser;
+	
 
 	public AdminUserPage(WebDriver driver) {
 
@@ -109,6 +113,12 @@ public class AdminUserPage {
 		waitutility.waitElementForClickable(searchUserType, 50);
 		searchUserType.click();
 
+	}
+	
+	public void searchUser() {
+		waitutility.waitElementForClickable(searchUserType, 50);
+		searchUser.click();
+		
 	}
 
 }

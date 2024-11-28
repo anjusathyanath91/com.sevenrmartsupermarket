@@ -45,6 +45,7 @@ public class AdminUserTest extends Base {
 		adminuserpage.enterSearchName();
 		adminuserpage.clickSearchMenu();
 		adminuserpage.clickSearchType();
+		adminuserpage.searchUser();
 		
 	}
 	
