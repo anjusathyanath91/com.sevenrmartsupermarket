@@ -1,5 +1,4 @@
 package com.sevenrmartsupermarket.utilities;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +36,16 @@ public class GeneralUtility {
 	 
 	 Faker faker = new Faker();
 		return faker.address().fullAddress();
+ }
+ 
+ public static String getRandomUsername() {
+		Faker faker = new Faker();
+     return "user_" + faker.name().firstName() + "_" + faker.random().nextInt(1000, 9999);
+ }
+
+ public static String getRandomPassword() {
+ 	Faker faker = new Faker();
+     return "pass_" + faker.internet().password();
  }
  
  public static String getTimeStamp() {
