@@ -70,7 +70,7 @@ public class AdminUserTest extends Base {
 		dashboardpage = new DashBoardPage(driver);
 		dashboardpage.clickAdminMoreInfo();
 		adminuserpage = new AdminUserPage(driver);
-		String actualDeleteMsg = adminuserpage.deleteUserFromAdminTable("Farha");
+		String actualDeleteMsg = adminuserpage.deleteUserFromAdminTable("Farha ");
 		String expectedAlertDeleteMsg = "Alert!User Deleted Successfully";
 		Assert.assertEquals(actualDeleteMsg, expectedAlertDeleteMsg);
 		
