@@ -1,14 +1,24 @@
 package com.sevenrmartsupermarket.pages;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.sevenrmartsupermarket.utilities.GeneralUtility;
+import com.sevenrmartsupermarket.utilities.PageUtility;
 import com.sevenrmartsupermarket.utilities.WaitUtility;
 
 public class AdminUserPage {
 
 	WebDriver driver;
 	WaitUtility waitutility;
+	PageUtility pageutility;
+	GeneralUtility generalutility = new GeneralUtility();
 
 	@FindBy(xpath = "//h1[text()='Admin Users']")
 	WebElement adminUserTitle;
@@ -40,17 +50,26 @@ public class AdminUserPage {
 	@FindBy(xpath = "//select[@id='ut']")
 	WebElement searchUserTypeMenu;
 
-	@FindBy(xpath = "//select[@id='ut']//option[text()='Staff']")
-	WebElement searchUserType;
-	
-	@FindBy(xpath="//button[@name='Search']")
+	@FindBy(xpath = "//select[@id='ut']")
+	WebElement userTypeSelect;
+
+	@FindBy(xpath = "//button[@name='Search']")
 	WebElement searchUser;
-	
+
+	@FindBy(xpath = "//table//tbody//tr//td")
+	List<WebElement> searchButtonBelowResultTable;
+
+	@FindBy(xpath = "//table//tbody//tr//td[1]")
+	List<WebElement> getAllNamesFromTable;
+
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement deleteAlert;
 
 	public AdminUserPage(WebDriver driver) {
 
 		this.driver = driver;
 		waitutility = new WaitUtility(driver);
+		pageutility = new PageUtility(driver);
 		PageFactory.initElements(driver, this);
 	}
 
@@ -61,13 +80,13 @@ public class AdminUserPage {
 	}
 
 	public void clickNewBtn() {
-		
+
 		adminUserNewBtn.click();
 
 	}
 
 	public void enterUserName(String username) {
-		
+
 		userName.sendKeys(username);
 
 	}
@@ -93,13 +112,13 @@ public class AdminUserPage {
 	}
 
 	public void clickSearchButton() {
-		
+
 		searchButton.click();
 	}
-	
-	public void enterSearchName() {
-		
-		searchUserName.sendKeys("anjusathyanath");
+
+	public void enterSearchName(String pass_Username) {
+
+		searchUserName.sendKeys(pass_Username);
 
 	}
 
@@ -109,16 +128,48 @@ public class AdminUserPage {
 
 	}
 
-	public void clickSearchType() {
-		waitutility.waitElementForClickable(searchUserType, 50);
-		searchUserType.click();
+	public void clickSearchType(String passUserType) {
+		pageutility.selectDropDownByValue(userTypeSelect, passUserType);
 
 	}
-	
-	public void searchUser() {
-		waitutility.waitElementForClickable(searchUserType, 50);
+
+	public void bottomSearchUser() {
+
 		searchUser.click();
-		
+
+	}
+
+	public List<String> getTableOfSearchedUser() {
+		List<String> tableRowValues = new ArrayList<String>();
+		tableRowValues = generalutility.getTextOfElements(searchButtonBelowResultTable);
+		System.out.println(tableRowValues);
+		return tableRowValues;
+	}
+
+	public String deleteUserFromAdminTable(String uname) {
+		List<String> allTableNames = generalutility.getTextOfElements(getAllNamesFromTable);
+		int index = 0;
+		for (index = 0; index < allTableNames.size(); index++) {
+			if (uname.equals(allTableNames.get(index))) {
+				System.out.println(allTableNames.get(index));
+				index++;
+				break;
+			}
+		}
+
+		WebElement deleteActionTable = driver.findElement(By.xpath("//table//tbody//tr[" + index + "]//td[5]//a[3]"));
+		pageutility.jsClick(deleteActionTable);
+		driver.switchTo().alert().accept();
+		String actualDeleteMsg = getDeleteAlertMsg();
+		return actualDeleteMsg;
+	}
+
+	public String getDeleteAlertMsg() {
+		String alertMessage = deleteAlert.getText().substring(2, 8);
+		String message = deleteAlert.getText().substring(9);
+		String actualMsg = alertMessage + message;
+		System.out.println(actualMsg);
+		return actualMsg;
 	}
 
 }

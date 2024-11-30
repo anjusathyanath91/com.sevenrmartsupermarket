@@ -1,4 +1,7 @@
 package com.sevenrmartsupermarket.tests;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -42,12 +45,35 @@ public class AdminUserTest extends Base {
 		adminuserpage=new AdminUserPage(driver);
 		dashboardpage.clickAdminMoreInfo();	
 		adminuserpage.clickSearchButton();
-		adminuserpage.enterSearchName();
+		adminuserpage.enterSearchName("Isela Hills");
 		adminuserpage.clickSearchMenu();
-		adminuserpage.clickSearchType();
-		adminuserpage.searchUser();
+		adminuserpage.clickSearchType("admin");
+		adminuserpage.bottomSearchUser();	
+		List<String> actualTableSearchValues = adminuserpage.getTableOfSearchedUser();
+		List<String> expectedTableSearchValues = new ArrayList<String>();
+		expectedTableSearchValues.add("Isela Hills");
+		expectedTableSearchValues.add("admin");
+		expectedTableSearchValues.add("Inactive");
+		expectedTableSearchValues.add("Details");
+		expectedTableSearchValues.add("");
+		expectedTableSearchValues.add("");
+		Assert.assertEquals(actualTableSearchValues, expectedTableSearchValues);
 		
 	}
 	
+	
+	@Test
+	public void verifyAdminUserDeleteBtn()
+	{
+		loginpage = new LoginPage(driver);
+		loginpage.login("admin", "admin");
+		dashboardpage = new DashBoardPage(driver);
+		dashboardpage.clickAdminMoreInfo();
+		adminuserpage = new AdminUserPage(driver);
+		String actualDeleteMsg = adminuserpage.deleteUserFromAdminTable("Farha");
+		String expectedAlertDeleteMsg = "Alert!User Deleted Successfully";
+		Assert.assertEquals(actualDeleteMsg, expectedAlertDeleteMsg);
+		
+	}
 		
 }

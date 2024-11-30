@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-28T21:25:25 IST" name="Default suite" finished-at="2024-11-28T21:25:30 IST" duration-ms="4489">
+  <suite started-at="2024-11-30T06:53:58 IST" name="Default suite" finished-at="2024-11-30T06:54:07 IST" duration-ms="8800">
     <groups>
     </groups>
-    <test started-at="2024-11-28T21:25:25 IST" name="Default test" finished-at="2024-11-28T21:25:30 IST" duration-ms="4489">
+    <test started-at="2024-11-30T06:53:58 IST" name="Default test" finished-at="2024-11-30T06:54:07 IST" duration-ms="8800">
       <class name="com.sevenrmartsupermarket.tests.AdminUserTest">
-        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@3d34d211]" started-at="2024-11-28T21:25:25 IST" name="launchBrowser" finished-at="2024-11-28T21:25:28 IST" duration-ms="2660" status="PASS">
+        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@7dc0f706]" started-at="2024-11-30T06:53:58 IST" name="launchBrowser" finished-at="2024-11-30T06:54:04 IST" duration-ms="6206" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchBrowser -->
-        <test-method signature="verifySearchUser()[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@3d34d211]" started-at="2024-11-28T21:25:28 IST" name="verifySearchUser" finished-at="2024-11-28T21:25:30 IST" duration-ms="1778" status="PASS">
+        <test-method signature="verifyAdminUserDeleteBtn()[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@7dc0f706]" started-at="2024-11-30T06:54:04 IST" name="verifyAdminUserDeleteBtn" finished-at="2024-11-30T06:54:07 IST" duration-ms="2476" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifySearchUser -->
-        <test-method is-config="true" signature="terminateSession(org.testng.ITestResult)[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@3d34d211]" started-at="2024-11-28T21:25:30 IST" name="terminateSession" finished-at="2024-11-28T21:25:30 IST" duration-ms="6" status="PASS">
+        </test-method> <!-- verifyAdminUserDeleteBtn -->
+        <test-method is-config="true" signature="terminateSession(org.testng.ITestResult)[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@7dc0f706]" started-at="2024-11-30T06:54:07 IST" name="terminateSession" finished-at="2024-11-30T06:54:07 IST" duration-ms="3" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifySearchUser status=SUCCESS method=AdminUserTest.verifySearchUser()[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@3d34d211] output={null}]]]>
+                <![CDATA[[TestResult name=verifyAdminUserDeleteBtn status=SUCCESS method=AdminUserTest.verifyAdminUserDeleteBtn()[pri:0, instance:com.sevenrmartsupermarket.tests.AdminUserTest@7dc0f706] output={null}]]]>
               </value>
             </param>
           </params>

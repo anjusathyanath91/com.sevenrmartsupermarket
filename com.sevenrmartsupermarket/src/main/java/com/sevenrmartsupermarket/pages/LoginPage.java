@@ -54,9 +54,9 @@ public class LoginPage {
 
 	public DashBoardPage clickOnSignInButton() {
 		signInField.click();
-	//	waitutility.waitElementForClickable(signInField, 20);
+		// waitutility.waitElementForClickable(signInField, 20);
 		return new DashBoardPage(driver);
-		
+
 	}
 
 	public DashBoardPage login(String userName, String password) {
