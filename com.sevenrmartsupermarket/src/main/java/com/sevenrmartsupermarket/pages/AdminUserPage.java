@@ -65,6 +65,14 @@ public class AdminUserPage {
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
 	WebElement deleteAlert;
 
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement updateAlert;
+
+	@FindBy(xpath = "//button[@class='btn btn-block-sm btn-info']")
+	WebElement updateButton;
+	
+	
+
 	public AdminUserPage(WebDriver driver) {
 
 		this.driver = driver;
@@ -139,6 +147,18 @@ public class AdminUserPage {
 
 	}
 
+	public void updateButtonClick() {
+		waitutility.waitElementForClickable(updateButton, 50);
+		updateButton.click();
+
+	}
+	
+	public void activateDeactivateClick() {
+		
+		//lockButton.click();
+		
+	}
+
 	public List<String> getTableOfSearchedUser() {
 		List<String> tableRowValues = new ArrayList<String>();
 		tableRowValues = generalutility.getTextOfElements(searchButtonBelowResultTable);
@@ -167,6 +187,56 @@ public class AdminUserPage {
 	public String getDeleteAlertMsg() {
 		String alertMessage = deleteAlert.getText().substring(2, 8);
 		String message = deleteAlert.getText().substring(9);
+		String actualMsg = alertMessage + message;
+		System.out.println(actualMsg);
+		return actualMsg;
+	}
+
+	public String editUserFromAdminTable(String uname) {
+		List<String> allTableNames = generalutility.getTextOfElements(getAllNamesFromTable);
+		int index = 0;
+		for (index = 0; index < allTableNames.size(); index++) {
+			if (uname.equals(allTableNames.get(index))) {
+				System.out.println(allTableNames.get(index));
+				index++;
+				break;
+			}
+		}
+		WebElement editActionTable = driver.findElement(By.xpath("//table//tbody//tr[\" + index + \"]//td[5]//a[2]"));
+		pageutility.jsClick(editActionTable);
+		//driver.switchTo().alert().accept();
+		updateButton.click();
+		String actualUpdateMsg = getUpdateAlertMsg();
+		return actualUpdateMsg;
+	}
+
+	public String getUpdateAlertMsg() {
+		String alertMessage = updateAlert.getText().substring(2, 8);
+		String message = updateAlert.getText().substring(9);
+		String actualMsg = alertMessage + message;
+		System.out.println(actualMsg);
+		return actualMsg;
+	}
+
+	public String activateDeactivateUserFromAdminTable(String uname) {
+		List<String> allTableNames = generalutility.getTextOfElements(getAllNamesFromTable);
+		int index = 0;
+		for (index = 0; index < allTableNames.size(); index++) {
+			if (uname.equals(allTableNames.get(index))) {
+				System.out.println(allTableNames.get(index));
+				index++;
+				break;
+			}
+		}
+		WebElement activateActionTable = driver	.findElement(By.xpath("//table//tbody//tr[\" + index + \"]//td[5]//a[1]"));
+		pageutility.jsClick(activateActionTable);
+		//driver.switchTo().alert().accept();
+		String actualUpdateMsg = getUpdateAlertMsg();
+		return actualUpdateMsg;
+	}
+	public String getActivateAlertMsg() {
+		String alertMessage = updateAlert.getText().substring(2, 8);
+		String message = updateAlert.getText().substring(9);
 		String actualMsg = alertMessage + message;
 		System.out.println(actualMsg);
 		return actualMsg;

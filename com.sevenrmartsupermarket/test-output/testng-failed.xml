@@ -8,7 +8,7 @@
           <include name="launchBrowser"/>
           <include name="launchBrowser"/>
           <include name="terminateSession"/>
-          <include name="verifyAdminUserDeleteBtn"/>
+          <include name="verifyAdminUserEditBtn"/>
         </methods>
       </class> <!-- com.sevenrmartsupermarket.tests.AdminUserTest -->
     </classes>
