@@ -1,5 +1,6 @@
 package com.sevenrmartsupermarket.pages;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +80,7 @@ public class AdminUserPage {
 		waitutility = new WaitUtility(driver);
 		pageutility = new PageUtility(driver);
 		PageFactory.initElements(driver, this);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 
 	public String getTitleAdminUser() {
@@ -204,7 +206,6 @@ public class AdminUserPage {
 		}
 		WebElement editActionTable = driver.findElement(By.xpath("//table//tbody//tr[\" + index + \"]//td[5]//a[2]"));
 		pageutility.jsClick(editActionTable);
-		//driver.switchTo().alert().accept();
 		updateButton.click();
 		String actualUpdateMsg = getUpdateAlertMsg();
 		return actualUpdateMsg;
@@ -228,9 +229,9 @@ public class AdminUserPage {
 				break;
 			}
 		}
-		WebElement activateActionTable = driver	.findElement(By.xpath("//table//tbody//tr[\" + index + \"]//td[5]//a[1]"));
+
+		WebElement activateActionTable = driver.findElement(By.xpath("//table//tbody//tr[" + index + "]//td[5]//a[1]"));
 		pageutility.jsClick(activateActionTable);
-		//driver.switchTo().alert().accept();
 		String actualUpdateMsg = getUpdateAlertMsg();
 		return actualUpdateMsg;
 	}
